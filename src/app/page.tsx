@@ -1,5 +1,9 @@
+import Header from "@/components/Header";
 export default function Home() {
   return (
+    <>
+      <Header />
+      <main className="min-h-screen bg-black text-white grid place-items-center px-6 py-16">
     <main className="min-h-screen bg-black text-white grid place-items-center px-6 py-16">
       <div className="max-w-2xl text-center space-y-6">
         <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
