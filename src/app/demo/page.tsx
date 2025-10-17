@@ -1,93 +1,135 @@
 // src/app/demo/page.tsx
-import Image from "next/image";
+import type { Metadata } from "next";
+import JsonLd from "@/components/JsonLd";
 
-export const metadata = {
-  title: "Demo | KartvizitUp",
-  description: "KartvizitUp dijital kartvizit önizlemesi",
+export const metadata: Metadata = {
+  title: "Canlı Demo | KartvizitUp",
+  description:
+    "KartvizitUp ile tek linkten paylaşabileceğin dijital kartvizit örneği.",
+  alternates: { canonical: "https://kartvizitup.com/demo" },
+  openGraph: {
+    title: "Canlı Demo | KartvizitUp",
+    description:
+      "KartvizitUp ile tek linkten paylaşabileceğin dijital kartvizit örneği.",
+    url: "https://kartvizitup.com/demo",
+    siteName: "KartvizitUp",
+    images: ["/og.svg"], // istersen /demo-og.png ekleyip bunu değiştir
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Canlı Demo | KartvizitUp",
+    description:
+      "KartvizitUp ile tek linkten paylaşabileceğin dijital kartvizit örneği.",
+    images: ["/og.svg"],
+  },
+};
+
+const PERSON_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Mahmut Engin",
+  jobTitle: "Kurucu, KartvizitUp",
+  url: "https://kartvizitup.com/demo",
+  email: "hello@kartvizitup.com",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "İstanbul",
+    addressCountry: "TR",
+  },
+  sameAs: [
+    // "https://www.linkedin.com/in/…",
+    // "https://x.com/…"
+  ],
 };
 
 export default function DemoPage() {
   return (
-    <main className="min-h-screen bg-black text-white px-6 py-20">
-      <div className="mx-auto max-w-xl space-y-10">
-        {/* Başlık */}
-        <header className="text-center space-y-3">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            Canlı Demo
-          </h1>
-          <p className="text-white/70">
-            KartvizitUp ile müşterine tek link ver. Aşağıdaki kart örnektir.
-          </p>
-        </header>
+    <main className="min-h-screen bg-black text-white grid place-items-center px-6 py-20">
+      {/* JSON-LD */}
+      <JsonLd id="demo-person" data={PERSON_SCHEMA} />
 
-        {/* Kart Önizlemesi */}
-        <section className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+      <section className="w-full max-w-lg">
+        <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-center">
+          Canlı Demo
+        </h1>
+        <p className="text-center opacity-80 mt-2">
+          KartvizitUp ile müşterine tek link ver. Aşağıdaki kart örnektir.
+        </p>
+
+        {/* Kart */}
+        <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-6">
+          {/* Üst bilgi */}
           <div className="flex items-center gap-4">
-            <div className="relative h-16 w-16 overflow-hidden rounded-full ring-1 ring-white/15">
-              <Image
-                src="https://avatars.githubusercontent.com/u/9919?v=4"
-                alt="Kullanıcı"
-                fill
-                sizes="64px"
-                className="object-cover"
-              />
+            <div className="h-12 w-12 rounded-full bg-white/10 grid place-items-center">
+              <span className="text-sm">ME</span>
             </div>
             <div>
-              <h2 className="text-xl font-semibold">Mahmut Engin</h2>
-              <p className="text-white/60 text-sm">Kurucu, KartvizitUp</p>
+              <div className="font-semibold">Mahmut Engin</div>
+              <div className="text-sm opacity-70">Kurucu, KartvizitUp</div>
             </div>
           </div>
 
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          {/* Aksiyon butonları */}
+          <div className="mt-5 grid grid-cols-3 gap-2">
             <a
-              href="tel:+905555555555"
-              className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-center hover:bg-white/15 transition"
+              href="tel:+905000000000"
+              className="rounded-lg border border-white/10 bg-white/5 py-2 text-center hover:bg-white/10 transition"
             >
-              📞 Ara
+              Ara
             </a>
             <a
-              href="https://wa.me/905555555555"
+              href="https://wa.me/905000000000"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-center hover:bg-white/15 transition"
+              className="rounded-lg border border-white/10 bg-white/5 py-2 text-center hover:bg-white/10 transition"
             >
-              💬 WhatsApp
+              WhatsApp
             </a>
             <a
               href="https://kartvizitup.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-lg border border-white/10 bg-white/10 px-4 py-2 text-center hover:bg-white/15 transition"
+              className="rounded-lg border border-white/10 bg-white/5 py-2 text-center hover:bg-white/10 transition"
             >
-              🌐 Web
+              Web
             </a>
           </div>
 
-          <div className="mt-6 space-y-1 text-sm text-white/70">
-            <p>📍 İstanbul, TR</p>
-            <p>✉️ hello@kartvizitup.com</p>
+          {/* Alt bilgi */}
+          <div className="mt-5 space-y-1 text-sm">
+            <div>📍 İstanbul, TR</div>
+            <div>
+              ✉️{" "}
+              <a
+                href="mailto:hello@kartvizitup.com"
+                className="underline underline-offset-4 hover:opacity-100 opacity-80"
+              >
+                hello@kartvizitup.com
+              </a>
+            </div>
           </div>
-        </section>
+        </div>
 
         {/* CTA */}
-        <section className="text-center space-y-3">
-          <h3 className="text-xl font-semibold">Erken erişim için kaydol</h3>
-          <p className="text-white/60">
+        <div className="text-center mt-10">
+          <h2 className="text-xl font-semibold">Erken erişim için kaydol</h2>
+          <p className="opacity-80 mt-1">
             Demo’yu beğendiysen, ürünü ilk deneyenlerden ol.
           </p>
           <a
-            href="mailto:hello@kartvizitup.com?subject=Erken%20Eri%C5%9Fim%20Talebi&body=Merhaba%2C%20KartvizitUp%27%C4%B1%20denemek%20istiyorum."
-            className="inline-block rounded-lg bg-white text-black font-medium px-5 py-2 hover:bg-white/90 transition"
+            href="mailto:hello@kartvizitup.com?subject=KartvizitUp%20Erken%20Erişim"
+            className="inline-block mt-4 rounded-lg px-5 py-3 border border-white/30 hover:border-white/60 transition"
           >
             İletişime Geç
           </a>
-        </section>
+        </div>
 
-        <p className="mt-10 text-center text-xs text-white/50">
-          Bu sayfa bir örnek şablondur. Gerçek projende butonları ve bilgileri
-          kendi verinle dolduracaksın.
+        <p className="text-center text-xs opacity-60 mt-8">
+          Bu sayfa bir örnek şablondur; gerçek projende bilgileri kendi verinle
+          doldurursun.
         </p>
-      </div>
+      </section>
     </main>
   );
 }
