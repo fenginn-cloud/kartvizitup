@@ -4,6 +4,19 @@ import type { Metadata } from "next";
 import { BUSINESSES } from "@/data/businesses";
 import BusinessCard from "@/components/BusinessCard";
 import JsonLd from "@/components/JsonLd";
+import VerifyBadge from "@/components/VerifyBadge";
+
+// …
+<h1 className="text-2xl font-semibold flex items-center gap-2">
+  {biz.name}
+  <VerifyBadge status={biz.verificationStatus} />
+</h1>
+
+{biz.tursabNumber && (
+  <p className="text-xs text-white/60">
+    TÜRSAB No: <span className="font-mono">{biz.tursabNumber}</span>
+  </p>
+)}
 
 type PageProps = { params: { slug: string } };
 
