@@ -1,3 +1,5 @@
+// src/app/layout.tsx
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -14,7 +16,7 @@ export const metadata: Metadata = {
     description: "Tek sayfa, hızlı ve modern dijital kartvizit platformu.",
     url: "https://kartvizitup.com",
     siteName: "KartvizitUp",
-    images: ["/og.svg"],
+    images: ["/og.svg"], // şimdilik svg bırakıyorduk
     type: "website",
   },
   icons: {
@@ -22,16 +24,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="tr">
       <body className={`${inter.className} bg-black text-white`}>
-        {children}
-        <Footer /> {/* 👈 Footer burada eklendi */}
+        <Header />
+        <main className="pt-16">{children}</main>
+        <Footer />
       </body>
     </html>
   );
