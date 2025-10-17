@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     description: "Tek sayfa, hızlı ve modern dijital kartvizit platformu.",
     url: "https://kartvizitup.com",
     siteName: "KartvizitUp",
-    images: ["/og.png"],
+    images: ["/og.svg"],
     type: "website",
   },
   icons: {
