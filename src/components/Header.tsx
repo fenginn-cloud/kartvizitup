@@ -1,37 +1,29 @@
-"use client";
-
 import Link from "next/link";
-import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="fixed top-0 inset-x-0 z-50 bg-white/5 backdrop-blur border-b border-white/10">
+    <header className="fixed top-0 inset-x-0 z-50 bg-black/40 backdrop-blur border-b border-white/10">
       <nav className="mx-auto max-w-5xl px-4 h-14 flex items-center justify-between">
-        {/* Logo: / yerine Next.js Link kullan */}
         <Link href="/" className="flex items-center gap-2">
-          <Image
-            src="/logo.svg"
-            alt="KartvizitUp"
-            width={112}
-            height={28}
-            priority
-          />
+          {/* İstersen /public/logo.svg kullanmaya devam edebilirsin */}
+          <img src="/logo.svg" alt="KartvizitUp" className="h-7" />
         </Link>
 
         <div className="flex items-center gap-3 text-sm">
-          <a
+          <Link
             href="mailto:hello@kartvizitup.com"
-            className="opacity-80 hover:opacity-100"
+            className="opacity-90 hover:opacity-100"
           >
             İletişim
-          </a>
-          {/* Demo linkini sayfa içi anchor yapalım; / yerine #demo kuralı tetiklemez */}
-          <a
-            href="#demo"
-            className="rounded-lg px-3 py-1.5 bg-white text-black font-medium hover:opacity-90"
+          </Link>
+
+          {/* Marka renkli DEMO butonu */}
+          <Link
+            href="#"
+            className="rounded-lg px-4 py-2 bg-brand text-black font-medium hover:bg-brand-900 hover:text-white transition"
           >
             Demo
-          </a>
+          </Link>
         </div>
       </nav>
     </header>
