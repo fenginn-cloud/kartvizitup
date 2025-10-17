@@ -22,4 +22,30 @@ export const BUSINESSES: Record<string, Business> = {
       { type: "web", url: "https://hiddengarden.example" }
     ],
   },
+  export const BUSINESSES: Record<string, Business> = {
+  "hidden-garden": {
+    slug: "hidden-garden",
+    name: "Hidden Garden Bungalov",
+    tagline: "Doğayla iç içe konaklama deneyimi",
+    // ...
+    tursabNumber: "9999",                 // işletme beyanı
+    verificationStatus: "verified",       // admin onayladıysa
+    verification: [
+      {
+        source: "savibu",
+        reference: "SAVIBU-2025-00123",
+        proofUrl: "https://savibu.org/…", // varsa
+        checkedBy: "admin@kartvizitup.com",
+        checkedAt: new Date().toISOString(),
+        notes: "SAVİBU teyidi alındı."
+      },
+      {
+        source: "tursab",
+        reference: "A-12345",
+        proofUrl: "https://…",            // varsa resmi sayfa
+        checkedBy: "admin@kartvizitup.com",
+        checkedAt: new Date().toISOString()
+      }
+    ],
+  },
 };
