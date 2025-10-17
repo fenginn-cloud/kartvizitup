@@ -4,12 +4,17 @@ import type { Business } from "@/types/business";
 export default function BusinessCard({ biz }: { biz: Business }) {
   return (
     <section className="rounded-xl border border-white/10 bg-white/5 p-5 backdrop-blur">
-      {/* Başlık + rozet */}
+      {/* Başlık + rozetler */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold flex items-center gap-2">
+          <h1 className="text-2xl font-semibold flex flex-wrap items-center gap-2">
             {biz.name}
             <VerifyBadge status={biz.verificationStatus} />
+            {biz.savibuVerified && (
+              <span className="inline-flex items-center gap-1 rounded-full bg-sky-600/20 text-sky-300 border border-sky-600/40 px-2 py-0.5 text-xs">
+                SAVİBU
+              </span>
+            )}
           </h1>
 
           {biz.tursabNumber && (
