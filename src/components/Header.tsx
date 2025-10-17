@@ -1,12 +1,19 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Header() {
   return (
     <header className="fixed top-0 inset-x-0 z-50 bg-black/40 backdrop-blur border-b border-white/10">
       <nav className="mx-auto max-w-5xl px-4 h-14 flex items-center justify-between">
-        {/* Logo → anasayfa linki */}
+        {/* Logo ve anasayfa */}
         <Link href="/" className="flex items-center gap-2">
-          <img src="/logo.svg" alt="KartvizitUp" className="h-7" />
+          <Image
+            src="/logo.svg"
+            alt="KartvizitUp"
+            width={100}
+            height={28}
+            priority
+          />
           <span className="sr-only">KartvizitUp</span>
         </Link>
 
