@@ -6,18 +6,6 @@ import BusinessCard from "@/components/BusinessCard";
 import JsonLd from "@/components/JsonLd";
 import VerifyBadge from "@/components/VerifyBadge";
 
-// …
-<h1 className="text-2xl font-semibold flex items-center gap-2">
-  {biz.name}
-  <VerifyBadge status={biz.verificationStatus} />
-</h1>
-
-{biz.tursabNumber && (
-  <p className="text-xs text-white/60">
-    TÜRSAB No: <span className="font-mono">{biz.tursabNumber}</span>
-  </p>
-)}
-
 type PageProps = { params: { slug: string } };
 
 export async function generateStaticParams() {
@@ -59,6 +47,21 @@ export default function BusinessPage({ params }: PageProps) {
   return (
     <main className="mx-auto max-w-3xl px-4 py-16">
       <JsonLd id="biz-schema" data={schema} />
+
+      {/* Başlık ve doğrulama rozeti */}
+      <header className="mb-6">
+        <h1 className="text-2xl font-semibold flex items-center gap-2">
+          {biz.name}
+          <VerifyBadge status={biz.verificationStatus ?? "unverified"} />
+        </h1>
+
+        {biz.tursabNumber && (
+          <p className="text-xs text-white/60">
+            TÜRSAB No: <span className="font-mono">{biz.tursabNumber}</span>
+          </p>
+        )}
+      </header>
+
       <BusinessCard biz={biz} />
     </main>
   );
