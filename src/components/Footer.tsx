@@ -1,22 +1,15 @@
 export default function Footer() {
   return (
-    <footer className="mt-24 py-10 text-center text-xs text-white/60 border-t border-white/10">
+    <footer className="border-t border-white/10 mt-16 py-8 text-center text-sm text-gray-400">
       <p>
-        © {new Date().getFullYear()} KartvizitUp — Tek sayfa, hızlı ve modern dijital kartvizit.
+        © {new Date().getFullYear()} KartvizitUp — Tüm hakları saklıdır.
       </p>
-      <p className="mt-2">
-        <a
-          href="/demo"
-          className="underline underline-offset-4 hover:text-white transition"
-        >
-          Canlı demo
-        </a>
-        {" · "}
+      <p className="mt-1">
         <a
           href="mailto:hello@kartvizitup.com"
-          className="underline underline-offset-4 hover:text-white transition"
+          className="hover:text-white transition"
         >
-          İletişim
+          hello@kartvizitup.com
         </a>
       </p>
     </footer>
