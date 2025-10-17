@@ -3,16 +3,14 @@ import Header from "@/components/Header";
 export default function Home() {
   return (
     <>
-      <Header />
-      {/* Header fixed olduğu için üstte boşluk veriyoruz */}
+      <Header /> {/* Header sabit olduğu için en üstte */}
       <main className="min-h-screen bg-black text-white grid place-items-center px-6 pt-16 py-16">
         <div className="max-w-2xl text-center space-y-6">
           <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight">
             KartvizitUp
           </h1>
-
           <p className="text-lg md:text-xl opacity-80">
-            Tek sayfa, hızlı ve modern dijital kartvizit platformu.
+            Tek sayfa, hızlı ve modern dijital kartvizit platformu.  
             Paylaş, güncelle, müşterine tek link ver.
           </p>
 
