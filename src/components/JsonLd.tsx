@@ -1,13 +1,13 @@
 // src/components/JsonLd.tsx
 import Script from "next/script";
 
-export default function JsonLd({
-  data,
-  id,
-}: {
-  data: Record<string, any>;
+type JsonLdProps = {
   id: string;
-}) {
+  // JSON-LD verisi serileştirilebilir olmalı; any yerine unknown/Record kullan
+  data: Record<string, unknown>;
+};
+
+export default function JsonLd({ id, data }: JsonLdProps) {
   return (
     <Script
       id={id}
