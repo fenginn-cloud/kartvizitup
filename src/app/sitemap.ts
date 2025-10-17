@@ -1,16 +1,22 @@
 // src/app/sitemap.ts
 import type { MetadataRoute } from "next";
+import { BUSINESSES } from "@/data/businesses";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.kartvizitup.com"; // ana alan adın
-  const pages = ["/", "/demo"];               // sitemap’te görmek istediklerin
+  const base = "https://www.kartvizitup.com";
 
-  const now = new Date();
+  const staticUrls: MetadataRoute.Sitemap = [
+    { url: `${base}/`, changeFrequency: "weekly", priority: 1.0 },
+    { url: `${base}/demo`, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${base}/iletisim`, changeFrequency: "yearly", priority: 0.6 },
+  ];
 
-  return pages.map((path) => ({
-    url: `${base}${path}`,
-    lastModified: now,
+  const businessUrls: MetadataRoute.Sitemap = Object.values(BUSINESSES).map((b) => ({
+    url: `${base}/${b.slug}`,
     changeFrequency: "weekly",
-    priority: path === "/" ? 1 : 0.8,
+    priority: 0.7,
+    lastModified: new Date(),
   }));
+
+  return [...staticUrls, ...businessUrls];
 }
