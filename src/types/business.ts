@@ -1,17 +1,11 @@
-// src/types/business.ts
+export type VerificationStatus = "verified" | "pending" | "unverified" | "fraud";
 
-export type VerificationStatus = "unverified" | "pending" | "verified" | "rejected";
+export type SocialLink =
+  | { type: "instagram"; url: string }
+  | { type: "maps"; url: string }
+  | { type: "web"; url: string };
 
-export interface VerificationEvidence {
-  source: "tursab" | "savibu" | "manual";
-  reference?: string;
-  proofUrl?: string;
-  checkedBy?: string;
-  checkedAt?: string;
-  notes?: string;
-}
-
-export interface Business {
+export type Business = {
   slug: string;
   name: string;
   tagline?: string;
@@ -21,12 +15,17 @@ export interface Business {
   phone?: string;
   whatsapp?: string;
   email?: string;
-  checkIn?: string;
-  checkOut?: string;
-  tursabNumber?: string;
-  verificationStatus?: VerificationStatus;
-  verification?: VerificationEvidence[];
-  coverImage?: string;
-  gallery?: string[];
-  socials?: { type: "instagram" | "maps" | "web"; url: string }[];
-}
+
+  checkin?: string;
+  checkout?: string;
+
+  coverImage?: string;        // ör: /demo/cover.jpg
+  gallery?: string[];         // ör: ["/demo/1.jpg", "/demo/2.jpg"]
+
+  socials?: SocialLink[];
+
+  // Doğrulama alanları
+  verificationStatus?: VerificationStatus; // "verified" | "pending" | ...
+  tursabNumber?: string | null;            // ör: "12345" yoksa null
+  savibuVerified?: boolean;                // true/false
+};
