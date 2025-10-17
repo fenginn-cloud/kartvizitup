@@ -18,4 +18,35 @@ export type Business = {
   coverImage?: string;          // /public altında bir görsel yolu
   gallery?: string[];           // görsel yolları
   socials?: SocialLink[];
+  // src/types/business.ts
+export type VerificationStatus = "unverified" | "pending" | "verified" | "rejected";
+
+export interface VerificationEvidence {
+  source: "tursab" | "savibu" | "manual";
+  reference?: string;           // TURSAB no, form id vs.
+  proofUrl?: string;            // resmi kayıt/başvuru linki
+  checkedBy?: string;           // kim onayladı
+  checkedAt?: string;           // ISO tarih
+  notes?: string;
+}
+
+export type Business = {
+  slug: string;
+  name: string;
+  tagline?: string;
+  description?: string;
+  address?: string;
+  locationUrl?: string;
+  phone?: string;
+  whatsapp?: string;
+  email?: string;
+
+  // ✅ yeni alanlar:
+  tursabNumber?: string;                       // İşletme beyanı
+  verificationStatus?: VerificationStatus;     // "verified" olunca rozet yanar
+  verification?: VerificationEvidence[];
+  
+  coverImage?: string;
+  gallery?: string[];
+  socials?: { type: "instagram"|"maps"|"web"; url: string }[];
 };
