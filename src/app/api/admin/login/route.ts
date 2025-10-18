@@ -1,19 +1,27 @@
 // src/app/api/admin/login/route.ts
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic"; // cache'e takılmasın
+
 export async function POST(req: Request) {
-  console.log("DEBUG ENV:", process.env.ADMIN_USERNAME, process.env.ADMIN_PASSWORD);
+  // Vercel ENV'leri geldi mi kontrol et
+  const USER = process.env.ADMIN_USERNAME;
+  const PASS = process.env.ADMIN_PASSWORD;
+
+  console.log("DEBUG ENV:", USER, PASS ? "***" : "undefined");
+
+  if (!USER || !PASS) {
+    return NextResponse.json(
+      { success: false, error: "ENV not set on server" },
+      { status: 500 }
+    );
+  }
 
   const { username, password } = await req.json();
 
-  if (
-    username === process.env.ADMIN_USERNAME &&
-    password === process.env.ADMIN_PASSWORD
-  ) {
-    // Giriş başarılı
+  if (username === USER && password === PASS) {
     return NextResponse.json({ success: true });
   }
 
-  // Hatalı giriş
   return NextResponse.json({ success: false }, { status: 401 });
 }
