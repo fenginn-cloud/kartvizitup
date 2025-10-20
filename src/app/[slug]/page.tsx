@@ -1,16 +1,17 @@
+// src/app/[slug]/page.tsx
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { BUSINESSES } from "@/data/businesses";
 import BusinessCard from "@/components/BusinessCard";
 import JsonLd from "@/components/JsonLd";
 
-type PageProps = { params: { slug: string } };
-
 export async function generateStaticParams() {
   return Object.keys(BUSINESSES).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: { params: { slug: string } }
+): Promise<Metadata> {
   const biz = BUSINESSES[params.slug];
   if (!biz) return { title: "KartvizitUp" };
 
@@ -28,7 +29,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default function BusinessPage({ params }: PageProps) {
+export default function BusinessPage(
+  { params }: { params: { slug: string } }
+) {
   const biz = BUSINESSES[params.slug];
   if (!biz) return notFound();
 
