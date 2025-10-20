@@ -1,5 +1,5 @@
 // src/lib/auth.ts
-import { cookies } from "next/headers";
+import { cookies, type CookieStore } from "next/headers";
 import { getIronSession, type IronSession, type SessionOptions } from "iron-session";
 
 type Sess = { isAdmin?: boolean };
@@ -8,7 +8,7 @@ const SESSION_COOKIE = "kvup_admin";
 
 const sessionOptions: SessionOptions = {
   cookieName: SESSION_COOKIE,
-  password: process.env.IRON_SESSION_PASSWORD!, // en az 32 karakter
+  password: process.env.IRON_SESSION_PASSWORD!, // en az 32 karakter olmalı
   cookieOptions: {
     secure: true,
     sameSite: "lax",
@@ -18,8 +18,9 @@ const sessionOptions: SessionOptions = {
 };
 
 export async function getSession(): Promise<IronSession<Sess>> {
-  const c = cookies(); // RequestCookies
-  return getIronSession<Sess>(c, sessionOptions);
+  // Next 15: cookies() artık Promise döndürüyor
+  const store = (await cookies()) as unknown as CookieStore;
+  return getIronSession<Sess>(store, sessionOptions);
 }
 
 export async function requireAdmin() {
