@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export const dynamic = "force-dynamic"; // cache'e takılmasın
 
 export async function POST(req: Request) {
-  // Vercel ENV'leri geldi mi kontrol et
   const USER = process.env.ADMIN_USERNAME;
   const PASS = process.env.ADMIN_PASSWORD;
 
