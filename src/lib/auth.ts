@@ -1,14 +1,14 @@
 // src/lib/auth.ts
 import { cookies } from "next/headers";
-import { getIronSession, type IronSession, type IronSessionOptions } from "iron-session";
+import { getIronSession, type IronSession, type SessionOptions } from "iron-session";
 
 type Sess = { isAdmin?: boolean };
 
 const SESSION_COOKIE = "kvup_admin";
 
-const sessionOptions: IronSessionOptions = {
+const sessionOptions: SessionOptions = {
   cookieName: SESSION_COOKIE,
-  password: process.env.IRON_SESSION_PASSWORD!, // 32+ karakter olsun
+  password: process.env.IRON_SESSION_PASSWORD!, // en az 32 karakter
   cookieOptions: {
     secure: true,
     sameSite: "lax",
@@ -18,8 +18,7 @@ const sessionOptions: IronSessionOptions = {
 };
 
 export async function getSession(): Promise<IronSession<Sess>> {
-  // cookies() senkron çalışır
-  const c = cookies();
+  const c = cookies(); // RequestCookies
   return getIronSession<Sess>(c, sessionOptions);
 }
 
